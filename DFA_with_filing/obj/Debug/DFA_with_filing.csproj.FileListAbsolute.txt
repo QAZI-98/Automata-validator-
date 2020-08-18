@@ -16,3 +16,12 @@ D:\docs\Visual Studio 2015\Projects\DFA_with_filing\DFA_with_filing\obj\Debug\DF
 D:\docs\Visual Studio 2015\Projects\DFA_with_filing\DFA_with_filing\obj\Debug\DFA_with_filing.Form1.resources
 D:\docs\Visual Studio 2015\Projects\DFA_with_filing\DFA_with_filing\obj\Debug\DFA_with_filing.Properties.Resources.resources
 D:\docs\Visual Studio 2015\Projects\DFA_with_filing\DFA_with_filing\obj\Debug\DFA_with_filing.csproj.GenerateResource.Cache
+C:\Users\qz\Desktop\DFA_with_filing\New folder\Automata-validator-\DFA_with_filing\bin\Debug\DFA_with_filing.exe.config
+C:\Users\qz\Desktop\DFA_with_filing\New folder\Automata-validator-\DFA_with_filing\obj\Debug\DFA_with_filing.exe
+C:\Users\qz\Desktop\DFA_with_filing\New folder\Automata-validator-\DFA_with_filing\obj\Debug\DFA_with_filing.pdb
+C:\Users\qz\Desktop\DFA_with_filing\New folder\Automata-validator-\DFA_with_filing\bin\Debug\DFA_with_filing.exe
+C:\Users\qz\Desktop\DFA_with_filing\New folder\Automata-validator-\DFA_with_filing\bin\Debug\DFA_with_filing.pdb
+C:\Users\qz\Desktop\DFA_with_filing\New folder\Automata-validator-\DFA_with_filing\obj\Debug\DFA_with_filing.csprojResolveAssemblyReference.cache
+C:\Users\qz\Desktop\DFA_with_filing\New folder\Automata-validator-\DFA_with_filing\obj\Debug\DFA_with_filing.Form1.resources
+C:\Users\qz\Desktop\DFA_with_filing\New folder\Automata-validator-\DFA_with_filing\obj\Debug\DFA_with_filing.Properties.Resources.resources
+C:\Users\qz\Desktop\DFA_with_filing\New folder\Automata-validator-\DFA_with_filing\obj\Debug\DFA_with_filing.csproj.GenerateResource.Cache
