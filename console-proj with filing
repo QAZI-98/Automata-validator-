@@ -1,0 +1,182 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+namespace auto_proj
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            ////////////////dfa with filling console algo
+
+            string path = "example.txt";
+
+            string[] text_file;
+            using (var rd = new StreamReader(path))
+            {
+                text_file = rd.ReadToEnd().Replace("\r", "").Split(' ', '\n');
+
+            }
+            string[] states = new string[text_file.Length];
+
+            /////////////////////////////////////////////////////////////////////////
+
+            for (int i = 0; i < text_file.Length; i++)
+            {
+                if (text_file[i] != "")
+                {
+                    states[i] = text_file[i];
+
+                }
+                i = i + 2;
+            }
+
+            string[] uniquestates_with_null_values = states.Distinct().ToArray();
+            string[] state = states.Distinct().ToArray();
+            int nos = 0;
+            for (int i = 0; i < uniquestates_with_null_values.Length; i++)
+            {
+                if (uniquestates_with_null_values[i] != null)
+                {
+                    state[nos] = uniquestates_with_null_values[i];
+                    nos++;
+                }
+            }
+
+
+
+            string[] input = new string[text_file.Length];
+            int s = 0;
+            for (int i = 1; i < text_file.Length; i++)
+            {
+                if (text_file[i] != "")
+                {
+                    input[s] = text_file[i];
+                    s++;
+                }
+                i = i + 2;
+            }
+
+            string[] qq = input.Distinct().ToArray();
+            int noi = 0;
+            for (int i = 0; i < qq.Length; i++)
+            {
+                if (qq[i] != null)
+                {
+                    noi++;
+                }
+            }
+
+
+            string[] output = new string[text_file.Length];
+            int d = 0;
+            for (int i = 2; i < text_file.Length; i++)
+            {
+                if (text_file[i] != "")
+                {
+                    //  Console.WriteLine(a[i]);
+                    output[d] = text_file[i];
+                    d++;
+                }
+                i = i + 2;
+            }
+
+            //////////////////////////////////////////////////////////////////// 
+
+            string[,,] arr = new string[nos, (noi * nos), noi * nos];
+            int counter = 0;
+            for (int i = 0; i < nos; i++)
+            {
+                arr[i, i, i] = state[i];
+                for (int l = 0; l < noi; l++)
+                {
+                    arr[i, i + 1 + l, i] = input[counter];
+                    arr[i, i, i + 1 + l] = output[counter];
+                    counter++;
+                }
+
+            }
+
+            Console.WriteLine("enter final state");
+            string final = Console.ReadLine();
+            Console.Clear();
+
+            Console.WriteLine("STATE\tINPUT\tOUTPUT");
+            for (int i = 0; i < nos; i++)
+            {
+                for (int l = 0; l < noi; l++)
+                {
+                    if (i == 0 && l == 0)
+                    {
+                        Console.WriteLine("->{0}\t{1}\t{2}", arr[i, i, i], arr[i, i + 1 + l, i], arr[i, i, i + 1 + l]);
+                    }
+                    else if (arr[i, i, i] == final)
+                    {
+                        Console.WriteLine("*{0}\t{1}\t{2}", arr[i, i, i], arr[i, i + 1 + l, i], arr[i, i, i + 1 + l]);
+                    }
+                    else
+                    {
+                        Console.WriteLine("{0}\t{1}\t{2}", arr[i, i, i], arr[i, i + 1 + l, i], arr[i, i, i + 1 + l]);
+                    }
+                }
+            }
+            while (true)
+            {
+
+                Console.WriteLine("\nenter string");
+                string strinG = Console.ReadLine();
+                char[] inputs = strinG.ToCharArray();
+                string current = arr[0, 0, 0];
+                // bool inside = false;
+                Console.WriteLine("visited state");
+                for (int k = 0; k < inputs.Length; k++)
+                {
+
+                    for (int i = 0; i < nos; i++)
+                    {
+
+                        if (current == arr[i, i, i])
+                        {
+
+                            for (int l = 0; l < noi; l++)
+                            {
+                                if (inputs[k].ToString() == arr[i, l + 1 + i, i])
+                                {
+
+                                    current = arr[i, i, i + l + 1];
+                                    Console.Write(current);
+                                    goto a;
+                                }
+
+                            }
+
+                        }
+                    }
+                    a:
+                    Console.WriteLine("");
+
+                }
+
+                //String.Compare
+                int comp = (String.Compare(final, current, System.Globalization.CultureInfo.CurrentCulture, System.Globalization.CompareOptions.IgnoreSymbols));
+                string check = (comp == 0) ? "accepted" : "rejected";
+                if (check == "accepted")
+                    Console.ForegroundColor = ConsoleColor.Green;
+                else
+                    Console.ForegroundColor = ConsoleColor.Red;
+
+                Console.WriteLine(check);
+                Console.ForegroundColor = ConsoleColor.White;
+
+            }
+
+            
+        }
+    }
+}
