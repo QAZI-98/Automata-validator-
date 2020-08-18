@@ -1,0 +1,106 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+namespace auto_proj
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+                Console.WriteLine("enter # of states");
+                int nos = int.Parse(Console.ReadLine());
+                Console.WriteLine("enter # of inputs");
+                int noi = int.Parse(Console.ReadLine());
+                Console.WriteLine();
+                string[,,] arr = new string[nos, (noi * nos), noi * nos];
+
+
+                for (int i = 0; i < nos; i++)
+                {
+                    Console.WriteLine("state:{0} ", i + 1);
+                    arr[i, i, i] = Console.ReadLine();
+                    for (int l = 0; l < noi; l++)
+                    {
+                        Console.WriteLine("input#{0}", l + 1);
+                        arr[i, i + 1 + l, i] = Console.ReadLine();
+                        Console.WriteLine("output");
+                        arr[i, i, i + 1 + l] = Console.ReadLine();
+                        Console.WriteLine();
+                    }
+                }
+
+
+                Console.WriteLine("enter final state");
+                string final = Console.ReadLine();
+                Console.Clear();
+
+                Console.WriteLine("STATES\tINPUT\tOUTPUT");
+                for (int i = 0; i < nos; i++)
+                {
+                    for (int l = 0; l < noi; l++)
+                    {
+                        if (i == 0 && l == 0)
+                        {
+                            Console.WriteLine("->{0}\t{1}\t{2}", arr[i, i, i], arr[i, i + 1 + l, i], arr[i, i, i + 1 + l]);
+                        }
+                        else if (arr[i, i, i] == final)
+                        {
+                            Console.WriteLine("*{0}\t{1}\t{2}", arr[i, i, i], arr[i, i + 1 + l, i], arr[i, i, i + 1 + l]);
+                        }
+                        else
+                        {
+                            Console.WriteLine("{0}\t{1}\t{2}", arr[i, i, i], arr[i, i + 1 + l, i], arr[i, i, i + 1 + l]);
+                        }
+                    }
+                }
+                while (true)
+                {
+
+                    Console.WriteLine("\nenter string");
+                    string strinG = Console.ReadLine();
+                    char[] inputs = strinG.ToCharArray();
+                    string current = arr[0, 0, 0];
+                    // bool inside = false;
+                    Console.WriteLine("visited states");
+                    for (int k = 0; k < inputs.Length; k++)
+                    {
+
+                        for (int i = 0; i < nos; i++)
+                        {
+                            if (current == arr[i, i, i])
+                            {
+
+                                for (int l = 0; l < noi; l++)
+                                {
+                                    if (inputs[k].ToString() == arr[i, l + 1 + i, i])
+                                    {
+
+                                        current = arr[i, i, i + l + 1];
+                                        Console.Write(current);
+                                        goto a;
+                                    }
+
+                                }
+
+                            }
+                        }
+                        a:
+                        Console.WriteLine("");
+
+                    }
+
+                    string check = (final == current) ? "accepted" : "rejected";
+                    Console.WriteLine(check);
+
+                }
+        
+
+
+        }
+    }
+}
