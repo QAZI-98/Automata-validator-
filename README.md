@@ -1,3 +1,3 @@
 # Automata-validator-
-The program takes an automata machine table as input either my console or a file,after the table has been fed and  
-final states(s) is defined the program can validate strings against the table 
+The program takes a deterministic automata machine table as input either by console or read from a file,after the table has been fed and  
+final states(s) is defined the program can validate strings against the table as accepted or un accepted
